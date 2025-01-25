@@ -1,6 +1,6 @@
 #pragma once
 #include <algorithm>  
-#include <iostream> 
+#include <iostream>
 
 template <typename T>
 class OneListContainer {
@@ -42,16 +42,13 @@ public:
         }
 
         std::cout << std::endl;
+        delete current;
     }
       
     void printSizeContainer() {
 
         std::cout << "Размер контейнера: " << m_size << " элементов" << std::endl;
 
-    }
-
-    int sizeContainer() {
-        return m_size;
     }   
 
     void eraseElement(int* begin, int* end) {
@@ -91,20 +88,22 @@ public:
             }
 
 
-            if (*ptr==m_size){             //удаляемый элемент последний элемент списка
-                Node *temp = m_last;	                            
-                m_last->next = NULL;	                                
-                delete temp;	                                    
+            else if (*ptr==m_size){             //удаляемый элемент последний элемент списка
+                Node *temp = head;
+                for (int i=1; i<((*ptr)-1); i++) temp = temp->next;  //Идем к адресу удаляемого элемента	                            
+                m_last = temp;
+                delete temp->next;	 
+                m_last->next = NULL;	                                                                                 
                 m_size--;		                                    
             }
 
-      
-            Node *temp = head, *temp_d;    //Если  удаляемый элемент лежит где-то в середине списка
+            else {
+            Node *temp = head;    //Если  удаляемый элемент лежит где-то в середине списка
             for (int i=1; i<((*ptr)-1); i++) temp = temp->next;  //Идем к адресу удаляемого элемента
-                temp_d = temp->next;
                 temp->next = temp->next->next;
-                delete temp_d;
-                m_size--;      
+                m_size--;
+            }      
+
         }
 
     }
@@ -127,17 +126,19 @@ public:
         m_size += 1;
     }
 
-    void elementPrint(int n) {   //вывод элемента
+    void print_element(int n) {   //вывод элемента
         Node *temp = head;
         for (int i=1; i<n; i++) temp = temp->next;  //Идем к адресу 
         std::cout << "Элемент = " << temp->data << std::endl;                                        
     }
 
-    T element(int n) {   
-        Node *temp = head;
-        for (int i=0; i<n; i++) temp = temp->next;  //Идем к адресу 
-        return temp->data;                                       
+    int sizeContainer() {
+        return m_size;
     }
 
-
+    int element(int n) {
+        Node *temp = head;
+        for (int i=0; i<n; i++) temp = temp->next;  
+        return temp->data;
+    }
 };

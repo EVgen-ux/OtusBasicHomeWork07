@@ -15,7 +15,7 @@ TEST(TwoList, Creat) {
 
 class TwoList_f : public ::testing::Test { // инициализация контейнера
 protected:
-    void SetUp() {
+    void SetUp() override {
 
         for (auto i = 0; i < count; ++i) {
             list.push_back(i);
@@ -43,67 +43,67 @@ TEST_F(TwoList_f , PushBack) {
     }
 }
 
-// TEST_F(TwoList_f , PushFirst) {
+TEST_F(TwoList_f , PushFirst) {
  
-// int sample[] = {10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+int sample[] = {10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-//     list.push_first(10);
+    list.push_first(10);
 
-//     ASSERT_EQ(list.sizeContainer(), count + 1);
-//     for (int i = 0; i < list.sizeContainer(); ++i) {
-//         ASSERT_EQ(list.element(i), sample[i]);
-//     }
-// }
+    ASSERT_EQ(list.sizeContainer(), count + 1);
+    for (int i = 0; i < list.sizeContainer(); ++i) {
+        ASSERT_EQ(list.element(i), sample[i]);
+    }
+}
 
-// TEST_F(TwoList_f , InsertMid) {
-//     int sample[] = {0, 1, 2, 3, 4, 30, 5, 6, 7, 8, 9};
+TEST_F(TwoList_f , InsertMid) {
+    int sample[] = {0, 1, 2, 3, 4, 30, 5, 6, 7, 8, 9};
 
-//     list.push_to_position(5, 30);
+    list.push_to_position(5, 30);
 
-//     ASSERT_EQ(list.sizeContainer(), count + 1);
-//     for (auto i = 0; i < list.sizeContainer(); ++i) {
-//         ASSERT_EQ(list.element(i), sample[i]);
-//     }
-// }
+    ASSERT_EQ(list.sizeContainer(), count + 1);
+    for (auto i = 0; i < list.sizeContainer(); ++i) {
+        ASSERT_EQ(list.element(i), sample[i]);
+    }
+}
 
 
-// TEST_F(TwoList_f , EraseBack) {
-//     int sample[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-//     int del[] {10}; // номера элементов в массиве, которые необходимо удалить (отсчет с 1, 0 вводить нельзя)
-//     int *begin {std::begin(del)};      
-//     int *end {std::end(del)};
-//     list.eraseElement(begin, end);
+TEST_F(TwoList_f , EraseBack) {
+    int sample[] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+    int del[] {10}; // номера элементов в массиве, которые необходимо удалить (отсчет с 1, 0 вводить нельзя)
+    int *begin {std::begin(del)};      
+    int *end {std::end(del)};
+    list.eraseElement(begin, end);
 
-//     ASSERT_EQ(list.sizeContainer(), count - 1);
-//     for (auto i = 0; i < list.sizeContainer(); ++i) {
-//         ASSERT_EQ(list.element(i), sample[i]);
-//     }
-// }
+    ASSERT_EQ(list.sizeContainer(), count - 1);
+    for (auto i = 0; i < list.sizeContainer(); ++i) {
+        ASSERT_EQ(list.element(i), sample[i]);
+    }
+}
 
-// TEST_F(TwoList_f , EraseFront) {
-//     int sample[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-//     int del[] {1}; // номера элементов в массиве, которые необходимо удалить (отсчет с 1, 0 вводить нельзя)
-//     int *begin {std::begin(del)};      
-//     int *end {std::end(del)};
-//     list.eraseElement(begin, end);
+TEST_F(TwoList_f , EraseFront) {
+    int sample[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int del[] {1}; // номера элементов в массиве, которые необходимо удалить (отсчет с 1, 0 вводить нельзя)
+    int *begin {std::begin(del)};      
+    int *end {std::end(del)};
+    list.eraseElement(begin, end);
 
-//     ASSERT_EQ(list.sizeContainer(), count - 1);
-//     for (auto i = 0; i < list.sizeContainer(); ++i) {
-//         ASSERT_EQ(list.element(i), sample[i]);
-//     }
-// }
+    ASSERT_EQ(list.sizeContainer(), count - 1);
+    for (auto i = 0; i < list.sizeContainer(); ++i) {
+        ASSERT_EQ(list.element(i), sample[i]);
+    }
+}
 
-// TEST_F(TwoList_f, EraseMidle) {
-//     int sample[] = {0, 1, 2, 3, 5, 6, 7, 8, 9};
-//     int del[] {5}; // номера элементов в массиве, которые необходимо удалить (отсчет с 1, 0 вводить нельзя)
-//     int *begin {std::begin(del)};      
-//     int *end {std::end(del)};
-//     list.eraseElement(begin, end);
+TEST_F(TwoList_f, EraseMidle) {
+    int sample[] = {0, 1, 2, 3, 5, 6, 7, 8, 9};
+    int del[] {5}; // номера элементов в массиве, которые необходимо удалить (отсчет с 1, 0 вводить нельзя)
+    int *begin {std::begin(del)};      
+    int *end {std::end(del)};
+    list.eraseElement(begin, end);
 
-//     ASSERT_EQ(list.sizeContainer(), count - 1);
-//     for (auto i = 0; i < list.sizeContainer(); ++i) {
-//         ASSERT_EQ(list.element(i), sample[i]);
-//     }
-// }
+    ASSERT_EQ(list.sizeContainer(), count - 1);
+    for (auto i = 0; i < list.sizeContainer(); ++i) {
+        ASSERT_EQ(list.element(i), sample[i]);
+    }
+}
 
 

@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>
 #include <algorithm>    // подключаем sort
+#include <iostream>
 
 template <typename T>
 class ListContainer {
@@ -50,13 +50,7 @@ public:
 
         std::cout << "Размер контейнера: " << m_size << " элементов" << std::endl;
 
-    }
-
-    int sizeContainer() {
-
-        return m_size;
-
-    }      
+    }   
 
     void eraseElement(int* begin, int* end) {
         int d_size = 0;
@@ -96,7 +90,7 @@ public:
             }
 
       
-            if (*ptr==m_size){
+            else if (*ptr==m_size){
                 Node *temp = m_last;	                           
                 m_last = m_last->prev;	                               
                 m_last->next = NULL;	                                
@@ -105,12 +99,14 @@ public:
             }
 
     
-            Node *temp = head;                        
-             for (int i=0; i<((*ptr)-1); i++) temp = temp->next;  //Идем к адресу удаляемого элемента
+            else {
+                Node *temp = head;                        
+                for (int i=0; i<((*ptr)-1); i++) temp = temp->next;  //Идем к адресу удаляемого элемента
                 temp->prev->next = temp->next;
                 temp->next->prev = temp->prev;
                 delete temp;  
-                m_size--;      
+                m_size--;
+            }      
         }
 
     }
@@ -135,15 +131,19 @@ public:
         m_size += 1;
     }
 
-    void printElement(int n) {
+    void print_element(int n) {
         Node *temp = head;
         for (int i=1; i<n; i++) temp = temp->next;  
         std::cout << "Элемент = " << temp->data << std::endl;                                        
     }
 
-    T element(int n) {
+    int sizeContainer() {
+        return m_size;
+    }
+
+    int element(int n) {
         Node *temp = head;
         for (int i=0; i<n; i++) temp = temp->next;  
-        return temp->data;                                        
+        return temp->data;
     }
 };

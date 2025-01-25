@@ -15,7 +15,7 @@ TEST(Mass, Creat) {
 
 class Vector_f : public ::testing::Test { // инициализация контейнера
 protected:
-    void SetUp() {
+    void SetUp() override {
 
         for (auto i = 0; i < count; ++i) {
             vector.push_back(i);
